@@ -1,7 +1,7 @@
 import React from 'react';
-import marked from 'marked';
 
 import ArticleMeta from './ArticleMeta';
+import ArticleBody from './ArticleBody';
 import CommentContainer from './CommentContainer';
 
 class Article extends React.Component {
@@ -15,11 +15,12 @@ class Article extends React.Component {
   }
 
   render() {
-    if (!this.props.article) {
+    const { article } = this.props;
+
+    if (!article) {
       return null;
     }
 
-    const markup = { __html: marked(this.props.article.body, { sanitize: true }) };
     const canModify = this.props.currentUser &&
       this.props.currentUser.username === this.props.article.author.username;
     return (
@@ -41,7 +42,7 @@ class Article extends React.Component {
           <div className="row article-content">
             <div className="col-xs-12">
 
-              <div dangerouslySetInnerHTML={markup}></div>
+              <ArticleBody body={article.body} />
 
               <ul className="tag-list">
                 {
