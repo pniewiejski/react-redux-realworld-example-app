@@ -1,8 +1,9 @@
 import React from 'react';
 
-import ArticleMeta from './ArticleMeta';
+import ArticleMeta from '../components/ArticleMeta';
 import ArticleBody from './ArticleBody';
 import CommentContainer from './CommentContainer';
+import ArticleActions from './ArticleActions';
 
 class Article extends React.Component {
   componentWillMount() {
@@ -38,7 +39,10 @@ class Article extends React.Component {
             <h1>{article.title}</h1>
             <ArticleMeta
               article={article}
-              canModify={canModify} />
+              articleActions={(
+                <ArticleActions canModify={canModify} article={article} />
+              )}
+            />
 
           </div>
         </div>
