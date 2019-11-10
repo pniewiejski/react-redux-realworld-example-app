@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import { Link } from '../routing';
 import ListErrors from './ListErrors';
 import api from '../api';
@@ -18,7 +18,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch({ type: UPDATE_FIELD_AUTH, key: 'password', value }),
   onChangeUsername: value =>
     dispatch({ type: UPDATE_FIELD_AUTH, key: 'username', value }),
-  onSubmit: (username, email, password) => {
+  onSubmit: ({ username, email, password }) => {
     const payload = api.Auth.register(username, email, password);
     dispatch({ type: REGISTER, payload })
   },
@@ -26,22 +26,36 @@ const mapDispatchToProps = dispatch => ({
     dispatch({ type: REGISTER_PAGE_UNLOADED })
 });
 
+function useForm(onSubmit) {
+  const [state, setState] = useReducer(
+    (state, newState) => ({...state, ...newState}),
+    {},
+  )
+
+  const changeValue = ({ target: { name, value } }) => {
+    setState({
+      [name]: value,
+    })
+  }
+
+  const submitForm = ev => {
+    ev.preventDefault();
+    onSubmit(state);
+  }
+
+  return {
+    values: state,
+    changeValue,
+    submitForm,
+  }
+}
+
 function Register(props) {
   const {onUnload, onSubmit} = props;
 
-  const changeEmail = ev => props.onChangeEmail(ev.target.value);
-  const changePassword = ev => props.onChangePassword(ev.target.value);
-  const changeUsername = ev => props.onChangeUsername(ev.target.value);
-  const submitForm = (username, email, password) => ev => {
-    ev.preventDefault();
-    onSubmit(username, email, password);
-  }
+  const {values, changeValue, submitForm} = useForm(onSubmit)
 
   useEffect(() => onUnload(), [onUnload]);
-
-  const email = props.email;
-  const password = props.password;
-  const username = props.username;
 
   return (
     <div className="auth-page">
@@ -58,16 +72,18 @@ function Register(props) {
 
             <ListErrors errors={props.errors} />
 
-            <form onSubmit={submitForm(username, email, password)}>
+            <form onSubmit={submitForm}>
               <fieldset>
 
                 <fieldset className="form-group">
                   <input
                     className="form-control form-control-lg"
                     type="text"
+                    name="username"
                     placeholder="Username"
-                    value={props.username}
-                    onChange={changeUsername} />
+                    value={values.username}
+                    onChange={changeValue}
+                  />
                 </fieldset>
 
                 <fieldset className="form-group">
@@ -75,8 +91,10 @@ function Register(props) {
                     className="form-control form-control-lg"
                     type="email"
                     placeholder="Email"
-                    value={props.email}
-                    onChange={changeEmail} />
+                    name="email"
+                    value={values.email}
+                    onChange={changeValue}
+                  />
                 </fieldset>
 
                 <fieldset className="form-group">
@@ -84,14 +102,17 @@ function Register(props) {
                     className="form-control form-control-lg"
                     type="password"
                     placeholder="Password"
-                    value={props.password}
-                    onChange={changePassword} />
+                    name="password"
+                    value={values.password}
+                    onChange={changeValue}
+                  />
                 </fieldset>
 
                 <button
                   className="btn btn-lg btn-primary pull-xs-right"
                   type="submit"
-                  disabled={props.inProgress}>
+                  disabled={props.inProgress}
+                >
                   Sign up
                 </button>
 
