@@ -1,5 +1,5 @@
-import article from './Article/store/article';
-import editor from './Editor/store/editor';
+import { articleReducer } from './Article';
+import { editorReducer } from './Editor';
 
 import articleList from './reducers/articleList';
 import auth from './reducers/auth';
@@ -11,11 +11,11 @@ import settings from './reducers/settings';
 import { routerReducer } from 'react-router-redux';
 
 export default combineReducers({
-  article,
+  article: articleReducer,
   articleList,
   auth,
   common,
-  editor,
+  editor: editorReducer,
   home,
   profile,
   settings,
