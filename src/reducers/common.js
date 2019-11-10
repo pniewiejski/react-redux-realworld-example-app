@@ -6,7 +6,6 @@ import {
   SETTINGS_SAVED,
   LOGIN,
   REGISTER,
-  EDITOR_PAGE_UNLOADED,
   HOME_PAGE_UNLOADED,
   PROFILE_PAGE_UNLOADED,
   PROFILE_FAVORITES_PAGE_UNLOADED,
@@ -55,7 +54,6 @@ export default (state = defaultState, action) => {
       };
     case ROOT_REDIRECT:
       return { ...state, redirectTo: '/' };
-    case EDITOR_PAGE_UNLOADED:
     case HOME_PAGE_UNLOADED:
     case PROFILE_PAGE_UNLOADED:
     case PROFILE_FAVORITES_PAGE_UNLOADED:

@@ -6,13 +6,16 @@ import agent from '../agent';
 import ListErrors from '../components/ListErrors';
 
 import {
+  ARTICLE_SUBMITTED, // shared action - redirect
+  PAGE_UNLOADED,
+} from '../constants/actionTypes';
+import {
   ADD_TAG,
   EDITOR_PAGE_LOADED,
   REMOVE_TAG,
   UPDATE_FIELD_EDITOR,
-  ARTICLE_SUBMITTED, // shared action - redirect
-  EDITOR_PAGE_UNLOADED, // shard action - page unloaded
-} from '../constants/actionTypes';
+  EDITOR_PAGE_UNLOADED,
+} from './store/actionTypes';
 
 const mapStateToProps = state => ({
   ...state.editor
@@ -27,8 +30,10 @@ const mapDispatchToProps = dispatch => ({
     dispatch({ type: REMOVE_TAG, tag }),
   onSubmit: payload =>
     dispatch({ type: ARTICLE_SUBMITTED, payload }),
-  onUnload: payload =>
-    dispatch({ type: EDITOR_PAGE_UNLOADED }),
+  onUnload: () => {
+    dispatch({ type: EDITOR_PAGE_UNLOADED });
+    dispatch({ type: PAGE_UNLOADED });
+  },
   onUpdateField: (key, value) =>
     dispatch({ type: UPDATE_FIELD_EDITOR, key, value })
 });
