@@ -1,17 +1,13 @@
 import React from 'react';
 import marked from 'marked';
 
-import agent from '../agent';
-
 import ArticleMeta from './ArticleMeta';
 import CommentContainer from './CommentContainer';
 
 class Article extends React.Component {
   componentWillMount() {
-    this.props.onLoad(Promise.all([
-      agent.Articles.get(this.props.match.params.id),
-      agent.Comments.forArticle(this.props.match.params.id)
-    ]));
+    const articleId = this.props.match.params.id;
+    this.props.fetchArticle(articleId);
   }
 
   componentWillUnmount() {
