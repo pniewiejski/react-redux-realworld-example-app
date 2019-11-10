@@ -15,23 +15,29 @@ class Article extends React.Component {
   }
 
   render() {
-    const { article } = this.props;
+    const {
+      article,
+      currentUser,
+      comments,
+      commentErrors,
+      match,
+    } = this.props;
 
     if (!article) {
       return null;
     }
 
-    const canModify = this.props.currentUser &&
-      this.props.currentUser.username === this.props.article.author.username;
+    const canModify = currentUser &&
+      currentUser.username === article.author.username;
     return (
       <div className="article-page">
 
         <div className="banner">
           <div className="container">
 
-            <h1>{this.props.article.title}</h1>
+            <h1>{article.title}</h1>
             <ArticleMeta
-              article={this.props.article}
+              article={article}
               canModify={canModify} />
 
           </div>
@@ -46,7 +52,7 @@ class Article extends React.Component {
 
               <ul className="tag-list">
                 {
-                  this.props.article.tagList.map(tag => {
+                  article.tagList.map(tag => {
                     return (
                       <li
                         className="tag-default tag-pill tag-outline"
@@ -68,10 +74,11 @@ class Article extends React.Component {
 
           <div className="row">
             <CommentContainer
-              comments={this.props.comments || []}
-              errors={this.props.commentErrors}
-              slug={this.props.match.params.id}
-              currentUser={this.props.currentUser} />
+              comments={comments || []}
+              errors={commentErrors}
+              slug={match.params.id}
+              currentUser={currentUser}
+            />
           </div>
         </div>
       </div>
