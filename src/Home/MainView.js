@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import classnames from 'classnames';
 
 import ArticleList from '../components/ArticleList';
-import agent from '../agent';
+import api from '../api';
 import { CHANGE_TAB } from '../constants/actionTypes';
 
 const FeedTab = ({
@@ -36,7 +36,7 @@ const YourFeedTab = ({
     text="Your Feed"
     clickHandler={ev => {
       ev.preventDefault();
-      onTabClick('feed', agent.Articles.feed());
+      onTabClick('feed', api.Articles.feed());
     }}
   />
 ) : null;
@@ -50,7 +50,7 @@ const GlobalFeedTab = ({
     text="Global Feed"
     clickHandler={ev => {
       ev.preventDefault();
-      onTabClick('all', agent.Articles.all());
+      onTabClick('all', api.Articles.all());
     }}
   />
 );

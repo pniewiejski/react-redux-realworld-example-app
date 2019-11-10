@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { ROOT_REDIRECT } from '../constants/actionTypes';
-import agent from '../agent';
+import api from '../api';
 
 const mapDispatchToProps = dispatch => ({
   onClickDelete: () =>
@@ -13,7 +13,7 @@ const mapDispatchToProps = dispatch => ({
 const ArticleActions = props => {
   const article = props.article;
   const del = () => {
-    props.onClickDelete(agent.Articles.del(article.slug))
+    props.onClickDelete(api.Articles.del(article.slug))
   };
   if (props.canModify) {
     return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import agent from '../agent';
+import api from '../api';
 
 import { ADD_COMMENT } from './store/actionsTypes';
 
@@ -23,7 +23,7 @@ class CommentInput extends React.Component {
 
     this.createComment = ev => {
       ev.preventDefault();
-      const payload = agent.Comments.create(this.props.slug,
+      const payload = api.Comments.create(this.props.slug,
         { body: this.state.body });
       this.setState({ body: '' });
       this.props.onSubmit(payload);

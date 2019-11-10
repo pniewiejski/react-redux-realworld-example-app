@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import agent from '../agent';
+import api from '../api';
 import {
   HOME_PAGE_LOADED,
   HOME_PAGE_UNLOADED,
@@ -33,10 +33,10 @@ class Home extends React.Component {
   componentWillMount() {
     const tab = this.props.token ? 'feed' : 'all';
     const articlesPromise = this.props.token ?
-      agent.Articles.feed :
-      agent.Articles.all;
+      api.Articles.feed :
+      api.Articles.all;
 
-    this.props.onLoad(tab, articlesPromise, Promise.all([agent.Tags.getAll(), articlesPromise()]));
+    this.props.onLoad(tab, articlesPromise, Promise.all([api.Tags.getAll(), articlesPromise()]));
   }
 
   componentWillUnmount() {
