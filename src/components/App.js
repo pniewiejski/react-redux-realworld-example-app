@@ -7,7 +7,8 @@ import { Route, Switch } from 'react-router-dom';
 
 import Home from '../Home';
 import Article from '../Article';
-import Editor from '../components/Editor';
+import Editor from '../Editor/Editor';
+
 import Login from '../components/Login';
 import Profile from '../components/Profile';
 import ProfileFavorites from '../components/ProfileFavorites';
@@ -60,10 +61,12 @@ class App extends React.Component {
             <Switch>
               <Route exact path="/" component={Home}/>
               <Route path="/article/:id" component={Article} />
+
+              <Route path="/editor" component={Editor} />
+              <Route path="/editor/:slug" component={Editor} />
+
               <Route path="/login" component={Login} />
               <Route path="/register" component={Register} />
-              <Route path="/editor/:slug" component={Editor} />
-              <Route path="/editor" component={Editor} />
               <Route path="/settings" component={Settings} />
               <Route path="/@:username/favorites" component={ProfileFavorites} />
               <Route path="/@:username" component={Profile} />

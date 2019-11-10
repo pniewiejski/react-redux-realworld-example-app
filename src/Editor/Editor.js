@@ -1,14 +1,17 @@
-import ListErrors from './ListErrors';
 import React from 'react';
-import agent from '../agent';
 import { connect } from 'react-redux';
+
+import agent from '../agent';
+
+import ListErrors from '../components/ListErrors';
+
 import {
   ADD_TAG,
   EDITOR_PAGE_LOADED,
   REMOVE_TAG,
-  ARTICLE_SUBMITTED,
-  EDITOR_PAGE_UNLOADED,
-  UPDATE_FIELD_EDITOR
+  UPDATE_FIELD_EDITOR,
+  ARTICLE_SUBMITTED, // shared action - redirect
+  EDITOR_PAGE_UNLOADED, // shard action - page unloaded
 } from '../constants/actionTypes';
 
 const mapStateToProps = state => ({
