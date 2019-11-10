@@ -2,9 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import marked from 'marked';
 
-import { ARTICLE_PAGE_LOADED, ARTICLE_PAGE_UNLOADED } from '../constants/actionTypes';
 import agent from '../agent';
+import {
+  PAGE_UNLOADED,
+} from '../constants/actionTypes';
 
+import {
+  ARTICLE_PAGE_LOADED,
+  ARTICLE_PAGE_UNLOADED,
+} from './store/actionsTypes';
 import ArticleMeta from './ArticleMeta';
 import CommentContainer from './CommentContainer';
 
@@ -16,8 +22,10 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   onLoad: payload =>
     dispatch({ type: ARTICLE_PAGE_LOADED, payload }),
-  onUnload: () =>
+  onUnload: () => {
     dispatch({ type: ARTICLE_PAGE_UNLOADED })
+    dispatch({ type: PAGE_UNLOADED })
+  }
 });
 
 class Article extends React.Component {

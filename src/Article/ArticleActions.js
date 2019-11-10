@@ -2,12 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { DELETE_ARTICLE } from '../constants/actionTypes';
+import { ROOT_REDIRECT } from '../constants/actionTypes';
 import agent from '../agent';
 
 const mapDispatchToProps = dispatch => ({
-  onClickDelete: payload =>
-    dispatch({ type: DELETE_ARTICLE, payload })
+  onClickDelete: () =>
+    dispatch({ type: ROOT_REDIRECT  })
 });
 
 const ArticleActions = props => {

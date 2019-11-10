@@ -1,4 +1,5 @@
-import article from './reducers/article';
+import article from './Article/store/article';
+
 import articleList from './reducers/articleList';
 import auth from './reducers/auth';
 import { combineReducers } from 'redux';

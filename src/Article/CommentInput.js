@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { ADD_COMMENT } from '../constants/actionTypes';
 import agent from '../agent';
+
+import { ADD_COMMENT } from './store/actionsTypes';
 
 const mapDispatchToProps = dispatch => ({
   onSubmit: payload =>
