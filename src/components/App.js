@@ -17,6 +17,7 @@ import Settings from '../components/Settings';
 
 import { store } from '../store';
 import { push } from 'react-router-redux';
+import { setToken } from '../request';
 
 const mapStateToProps = state => {
   return {
@@ -45,7 +46,7 @@ class App extends React.Component {
   componentWillMount() {
     const token = window.localStorage.getItem('jwt');
     if (token) {
-      api.setToken(token);
+      setToken(token);
     }
 
     this.props.onLoad(token ? api.Auth.current() : null, token);

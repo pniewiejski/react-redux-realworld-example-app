@@ -1,4 +1,3 @@
-import api from './api';
 import {
   ASYNC_START,
   ASYNC_END,
@@ -6,6 +5,7 @@ import {
   LOGOUT,
   REGISTER
 } from './constants/actionTypes';
+import { setToken } from './request';
 
 const promiseMiddleware = store => next => action => {
   if (isPromise(action.payload)) {
@@ -50,11 +50,11 @@ const localStorageMiddleware = store => next => action => {
   if (action.type === REGISTER || action.type === LOGIN) {
     if (!action.error) {
       window.localStorage.setItem('jwt', action.payload.user.token);
-      api.setToken(action.payload.user.token);
+      setToken(action.payload.user.token);
     }
   } else if (action.type === LOGOUT) {
     window.localStorage.setItem('jwt', '');
-    api.setToken(null);
+    setToken(null);
   }
 
   next(action);

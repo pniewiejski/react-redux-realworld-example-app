@@ -1,6 +1,6 @@
 import React from 'react';
 
-import api from '../api';
+import api from './api';
 
 const Tags = props => {
   const tags = props.tags;

@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 import classnames from 'classnames';
 
 import ArticleList from '../components/ArticleList';
-import api from '../api';
+import sharedApi from '../api';
 import { CHANGE_TAB } from '../constants/actionTypes';
+
+import api from './api';
 
 const FeedTab = ({
   active,
@@ -50,7 +52,7 @@ const GlobalFeedTab = ({
     text="Global Feed"
     clickHandler={ev => {
       ev.preventDefault();
-      onTabClick('all', api.Articles.all());
+      onTabClick('all', sharedApi.Articles.all());
     }}
   />
 );

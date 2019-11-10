@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import api from '../api';
+import sharedApi from '../api';
 import {
   HOME_PAGE_LOADED,
   HOME_PAGE_UNLOADED,
@@ -11,6 +11,7 @@ import {
 import Banner from './Banner';
 import MainView from './MainView';
 import Tags from './Tags';
+import api from './api';
 
 const Promise = global.Promise;
 
@@ -34,9 +35,9 @@ class Home extends React.Component {
     const tab = this.props.token ? 'feed' : 'all';
     const articlesPromise = this.props.token ?
       api.Articles.feed :
-      api.Articles.all;
+      sharedApi.Articles.all;
 
-    this.props.onLoad(tab, articlesPromise, Promise.all([api.Tags.getAll(), articlesPromise()]));
+    this.props.onLoad(tab, articlesPromise, Promise.all([sharedApi.Tags.getAll(), articlesPromise()]));
   }
 
   componentWillUnmount() {

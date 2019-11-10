@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import api from '../api';
+import sharedApi from '../api';
 
 import ListErrors from '../components/ListErrors';
 
@@ -9,6 +9,7 @@ import {
   ARTICLE_SUBMITTED, // shared action - redirect
   PAGE_UNLOADED,
 } from '../constants/actionTypes';
+
 import {
   ADD_TAG,
   EDITOR_PAGE_LOADED,
@@ -16,6 +17,7 @@ import {
   UPDATE_FIELD_EDITOR,
   EDITOR_PAGE_UNLOADED,
 } from './store/actionTypes';
+import api from './api';
 
 const mapStateToProps = state => ({
   ...state.editor
@@ -82,7 +84,7 @@ class Editor extends React.Component {
     if (this.props.match.params.slug !== nextProps.match.params.slug) {
       if (nextProps.match.params.slug) {
         this.props.onUnload();
-        return this.props.onLoad(api.Articles.get(this.props.match.params.slug));
+        return this.props.onLoad(sharedApi.Articles.get(this.props.match.params.slug));
       }
       this.props.onLoad(null);
     }
@@ -90,7 +92,7 @@ class Editor extends React.Component {
 
   componentWillMount() {
     if (this.props.match.params.slug) {
-      return this.props.onLoad(api.Articles.get(this.props.match.params.slug));
+      return this.props.onLoad(sharedApi.Articles.get(this.props.match.params.slug));
     }
     this.props.onLoad(null);
   }

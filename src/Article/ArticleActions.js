@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { ROOT_REDIRECT } from '../constants/actionTypes';
-import api from '../api';
+import api from './api';
 
 const mapDispatchToProps = dispatch => ({
   onClickDelete: () =>
