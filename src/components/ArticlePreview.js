@@ -1,14 +1,12 @@
 import React from 'react';
-import { Link } from '../routing';
 import { connect } from 'react-redux';
 
+import { Link } from '../routing';
 import api from '../api';
 import { ARTICLE_FAVORITED, ARTICLE_UNFAVORITED } from '../constants/actionTypes';
 
 import ArticleMeta from './ArticleMeta';
-
-const FAVORITED_CLASS = 'btn btn-sm btn-primary';
-const NOT_FAVORITED_CLASS = 'btn btn-sm btn-outline-primary';
+import ArticlePreviewActions from './ArticlePreviewActions';
 
 const mapDispatchToProps = dispatch => ({
   favorite: slug => dispatch({
@@ -23,11 +21,8 @@ const mapDispatchToProps = dispatch => ({
 
 const ArticlePreview = props => {
   const article = props.article;
-  const favoriteButtonClass = article.favorited ?
-    FAVORITED_CLASS :
-    NOT_FAVORITED_CLASS;
 
-  const handleClick = ev => {
+  const favoriteArticle = ev => {
     ev.preventDefault();
     if (article.favorited) {
       props.unfavorite(article.slug);
@@ -41,11 +36,11 @@ const ArticlePreview = props => {
       <ArticleMeta
         article={article}
         articleActions={(
-          <div className="pull-xs-right">
-            <button className={favoriteButtonClass} onClick={handleClick}>
-              <i className="ion-heart"></i> {article.favoritesCount}
-            </button>
-          </div>
+          <ArticlePreviewActions
+            favorited={article.favorited}
+            favoritesCount={article.favoritesCount}
+            favoriteArticle={favoriteArticle}
+          />
         )}
       />
 
