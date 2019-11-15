@@ -132,7 +132,24 @@ Goal: make use of the configuration prop prepared in the previous exercise.
 
 ## Exercise 14 (optional) - Extract FieldTab component in `Home/MainView.js`
 
+Goal: see how suprising it can be to extract generic components.
+
+1. Look inside `MainView` component, there are 3 components there: `YourFeedTab`, `GlobalFeedTab`, `TagFilterTab`
+2. Try to extract a generic `FeedTab` component for them
+3. Do those components conform to LSP?
+4. Does it matter? If yes - when?
+
 ## Exercise 15 - Extract separate api for Home, Article and Editor features
+
+Goal: segregate API interfaces for different features.
+
+0. (optional) Rename `agent` to `api` because `agent` is a stupid name for an API module
+1. Search globally and see where the API methods are use (for example: search for "Articles.create")
+2. If the API is used only in one feature then move it there
+3. Do it only for Home, Article and Editor features
+4. Do it in small parts, feature by feature
+
+Attention: in some cases you will need to import two API files - one shared and one feature-specific.
 
 ## Exercise 16 - Extract routing module
 
