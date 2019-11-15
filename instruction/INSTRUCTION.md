@@ -72,11 +72,37 @@ The goal of this exercise is to create a gateway - a public interface for each f
 
 > Example
 
-## Exercise 8 - Add `Article.container`
+The goal of this exercise is to clean up the Article component and remove all stuff related to Redux.
+
+You will SLAP the code, inject stuff and see how to segregate responsibilities.
+
+1. Create `Article.container.js` file and move all redux-related stuff there.
+2. Pass necessary props.
+
+## Exercise 8 - Add `Editor.container`
+
+The goal is the same as in the previous exercise.
+
+1. Create `Article.container.js` file and move all redux-related stuff there.
+2. Pass necessary props.
 
 ## Exercise 9 - Remove `agent` from the `Article.js`
 
-> Example ?
+> Example
+
+The goal of this exercise is to get rid of agent import in the Article component. It shouldn't be concerned about api calls.
+
+1. Move `agent` up to the `Article.container` component.
+2. (optional but recommended) Do the same for `Editor` component.
+
+This is how `componentWillMount` should look like in the `Article` component:
+
+```js
+componentWillMount() {
+  const articleId = this.props.match.params.id;
+  this.props.fetchArticle(articleId);
+}
+```
 
 ## Exercise 10 - SLAP it - extract ArticleBody component
 
