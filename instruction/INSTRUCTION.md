@@ -2,7 +2,7 @@
 
 ## Todo
 
-* [ ] Open an editor or prepare piece of paper for taking notes
+* [ ] Open an editor or prepare a piece of paper for taking notes
 
 ## Keep an eye on:
 
@@ -24,7 +24,7 @@ It'll help us group features based on how we see them in the UI.
 
 Keep the reducers intact for now.
 
-Bonus points for applying standard cleaning methods: segregate imports, descturcutre props, add missing prop types.
+Bonus points for applying standard cleaning methods: segregate imports, destructure props, add missing prop types.
 
 ## Exercise 2 - Extract Article feature
 
@@ -64,7 +64,7 @@ Look for hints 💡 in `Editor.js` and `editor.js` reducer.
 Goal: create a gateway - a public interface for each feature. This should be the only file that is imported in other parts of the application like router setup and so on.
 
 1. Extract `Article.js` file and move the contents of  `index.js` there.
-2. Export Article component and reducer from the index file.
+2. Export `Article` component and reducer from the index file.
 3. Add `index.js` file for Editor feature.
 4. Export Editor component and reducer from the index file.
 
@@ -72,16 +72,16 @@ Goal: create a gateway - a public interface for each feature. This should be the
 
 > Example
 
-Goal: clean up the Article component and remove all stuff related to Redux.
+Goal: clean up the `Article` component and remove all stuff related to Redux.
 
-You will SLAP the code, inject stuff and see how to segregate responsibilities.
+SLAP the code, inject stuff and see how to segregate responsibilities.
 
 1. Create `Article.container.js` file and move all redux-related stuff there.
 2. Pass necessary props.
 
 ## Exercise 8 - Add `Editor.container`
 
-Goal: the same as in the previous exercise.
+Goal: the same as above.
 
 1. Create `Article.container.js` file and move all redux-related stuff there.
 2. Pass necessary props.
@@ -90,7 +90,7 @@ Goal: the same as in the previous exercise.
 
 > Example
 
-Goal: get rid of agent import in the Article component. It shouldn't be concerned about api calls.
+Goal: get rid of `agent` import in the `Article` component. It shouldn't be concerned about api calls.
 
 1. Move `agent` up to the `Article.container` component.
 2. (optional but recommended) Do the same for `Editor` component.
@@ -104,33 +104,33 @@ componentWillMount() {
 }
 ```
 
-## Exercise 10 - SLAP it - extract ArticleBody component
+## Exercise 10 - SLAP it - extract `ArticleBody` component
 
-Goal: get rid of the `marked` dependency in the Article component and SLAP it a little bit more. This is just to show that those components can be really easy to read thanks to those small refactors.
+Goal: get rid of the `marked` dependency in the `Article` component and SLAP it a little bit more. This is just to show that those components can be really easy to read thanks to those small refactors.
 
 1. Replace `<div dangerouslySetInnerHTML={markup}></div>` with `<ArticleBody body={article.body} />`
 
-## Exercise 11 - Destructure props in Article component (you will need that later)
+## Exercise 11 - Destructure props in `Article` component (you will need that later)
 
 Goal: become a little bit more prepared for the hooks refactor that is coming.
 
 Also it cleans up the component interface. There is one place where you see what props are used where (mainly in the `render` method).
 
-## Exercise 12 - Move ArticleMeta to shared components and inject ArticleActions with props
+## Exercise 12 - Move `ArticleMeta` to shared components and inject `ArticleActions` with props
 
 Goal: make a hole - a configuration prop that we will use to exercise OCP and use it in the next task.
 
 1. Move `ArticleMeta` to shared components
 1. Look for hints 💡 in `ArticleMeta`
 
-## Exercise 13 - Use ArticleMeta in ArticlePreview
+## Exercise 13 - Use `ArticleMeta` in `ArticlePreview`
 
 Goal: make use of the configuration prop prepared in the previous exercise.
 
 1. Use `ArticleMeta` in `ArticlePreview` component.
 2. Look for hints 💡 there.
 
-## Exercise 14 (optional) - Extract FieldTab component in `Home/MainView.js`
+## Exercise 14 (optional) - Extract `FieldTab` component in `Home/MainView.js`
 
 Goal: see how suprising it can be to extract generic components.
 
@@ -160,7 +160,7 @@ Goal: create abstraction on `react-router-dom`.
 
 When you finish ask me for a special halloween exercise. 👻
 
-## Exercise 17 - Refactor Article component to Hooks
+## Exercise 17 - Refactor `Article` component to Hooks
 
 > Example
 
@@ -168,30 +168,30 @@ Goal: practice rewriting components to Hooks.
 
 It's good to have destructured props now. Isn't it?
 
-1. Refactor Article component
+1. Refactor `Article` component
 2. Replace lifecycle methods with `useEffect`
 
-## Exercise 18 - Refactor CommentInput to Hooks
+## Exercise 18 - Refactor `CommentInput` to Hooks
 
 Goal: practice rewriting components to Hooks
 
-1. Refactor CommentInput component
+1. Refactor `CommentInput` component
 2. Replace state with `useState`
 3. Make sure to use `useCallback`
 
 ## Exercise 19 - Add `@testing-library/react` and test Article lifecycle
 
-Goal: test cleaned up Article component, because it's extremely easy now.
+Goal: test cleaned up `Article` component, because it's extremely easy now.
 
 1. Install @testing-library/react
 2. Add test: `should fetch articles on mount and cleanup on unmount`
 3. Write some other tests you think make sense
 
-## Exercise 20 - Refactor Register component to Hooks and create custom `useForm` hook
+## Exercise 20 - Refactor `Register` component to Hooks and create custom `useForm` hook
 
 Goal: refactor component that keeps the local form state in Redux to a custom hook that will do it a lot better.
 
-1. Refactor Register component to Hooks
+1. Refactor `Register` component to Hooks
 2. Create custom `useForm` hook to keep the form state there
 3. Get rid of redux calls to keep the form state in the store 🤦‍♂️
 
@@ -223,3 +223,7 @@ Use the HoC to show "favorite" button on article preview only if the use has pro
 3. The hook will return `null` for `isProUser===false` and `WrappedComponent` otherwise
 4. Wrap ArticlePreviewActions with HoC and simulate the change (by setting the `isProUser` flag in the reducer)
 5. Discuss - why `withProSubscriptionOnly` is a HoC, wouldn't it be better if it was a Hook?
+
+## Fin
+
+Feel free to clean this mess up until we move to the next exercise.
