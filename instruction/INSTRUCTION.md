@@ -106,7 +106,15 @@ componentWillMount() {
 
 ## Exercise 10 - SLAP it - extract ArticleBody component
 
+The goal of this task is to get rid of the `marked` dependency in the Article component and SLAP it a little bit more. This is just to show that those components can be really easy to read thanks to those small refactors.
+
+1. Replace `<div dangerouslySetInnerHTML={markup}></div>` with `<ArticleBody body={article.body} />`
+
 ## Exercise 11 - Destructure props in Article component (you will need that later)
+
+The goal of this task is to become a little bit more prepared for the hooks refactor that is coming.
+
+Also it cleans up the component interface. There is one place where you see what props are used where (mainly in the `render` method).
 
 ## Exercise 12 - Move ArticleMeta to shared components and inject ArticleActions with props
 
