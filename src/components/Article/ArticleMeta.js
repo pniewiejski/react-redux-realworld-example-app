@@ -19,6 +19,7 @@ const ArticleMeta = props => {
         </span>
       </div>
 
+      {/* 💡 hint: we should inject that in props */}
       <ArticleActions canModify={props.canModify} article={article} />
     </div>
   );

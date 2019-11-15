@@ -49,6 +49,7 @@ const ArticlePreview = props => {
           </span>
         </div>
 
+        {/* 💡 hint: this could be injected to a generic component if we had one... */}
         <div className="pull-xs-right">
           <button className={favoriteButtonClass} onClick={handleClick}>
             <i className="ion-heart"></i> {article.favoritesCount}

@@ -18,7 +18,7 @@
 
 > Example
 
-The goal of this and few following exercises is to clean up the code by extracting feature folders.
+Goal: the goal of this and the few following exercises is to clean up the code by extracting feature folders.
 
 It'll help us group features based on how we see them in the UI.
 
@@ -38,9 +38,9 @@ Keep the reducers intact for now.
 
 > Example
 
-The goal of this exercise is to move the article reducer to where it belongs - to the Article feature.
+Goal: move the article reducer to where it belongs - to the Article feature.
 
-Keep an eye on hints 💡 in `ArticleActions.js`, `Article/index.js`, `common.js` reducer.
+Look for hints 💡 in `ArticleActions.js`, `Article/index.js`, `common.js` reducer.
 
 1. Add `store` folder inside the Article feature
 2. Add `actionTypes` to the `store` folder, extract actions that are used only in this feature from the common actions
@@ -49,9 +49,9 @@ Keep an eye on hints 💡 in `ArticleActions.js`, `Article/index.js`, `common.js
 
 ## Exercise 5 - Move the Editor reducer to the Editor feature
 
-The goal is the same as above.
+Goal: the same as above.
 
-Keep an eye on hints 💡 in `Editor.js` and `editor.js` reducer.
+Look for hints 💡 in `Editor.js` and `editor.js` reducer.
 
 1. Add `store` folder inside the Editor feature
 2. Add `actionTypes` to the `store` folder, extract actions that are used only in this feature from the common actions
@@ -61,7 +61,7 @@ Keep an eye on hints 💡 in `Editor.js` and `editor.js` reducer.
 
 > Example
 
-The goal of this exercise is to create a gateway - a public interface for each feature. This should be the only file that is imported in other parts of the application like router setup and so on.
+Goal: create a gateway - a public interface for each feature. This should be the only file that is imported in other parts of the application like router setup and so on.
 
 1. Extract `Article.js` file and move the contents of  `index.js` there.
 2. Export Article component and reducer from the index file.
@@ -72,7 +72,7 @@ The goal of this exercise is to create a gateway - a public interface for each f
 
 > Example
 
-The goal of this exercise is to clean up the Article component and remove all stuff related to Redux.
+Goal: clean up the Article component and remove all stuff related to Redux.
 
 You will SLAP the code, inject stuff and see how to segregate responsibilities.
 
@@ -81,7 +81,7 @@ You will SLAP the code, inject stuff and see how to segregate responsibilities.
 
 ## Exercise 8 - Add `Editor.container`
 
-The goal is the same as in the previous exercise.
+Goal: the same as in the previous exercise.
 
 1. Create `Article.container.js` file and move all redux-related stuff there.
 2. Pass necessary props.
@@ -90,7 +90,7 @@ The goal is the same as in the previous exercise.
 
 > Example
 
-The goal of this exercise is to get rid of agent import in the Article component. It shouldn't be concerned about api calls.
+Goal: get rid of agent import in the Article component. It shouldn't be concerned about api calls.
 
 1. Move `agent` up to the `Article.container` component.
 2. (optional but recommended) Do the same for `Editor` component.
@@ -106,19 +106,29 @@ componentWillMount() {
 
 ## Exercise 10 - SLAP it - extract ArticleBody component
 
-The goal of this task is to get rid of the `marked` dependency in the Article component and SLAP it a little bit more. This is just to show that those components can be really easy to read thanks to those small refactors.
+Goal: get rid of the `marked` dependency in the Article component and SLAP it a little bit more. This is just to show that those components can be really easy to read thanks to those small refactors.
 
 1. Replace `<div dangerouslySetInnerHTML={markup}></div>` with `<ArticleBody body={article.body} />`
 
 ## Exercise 11 - Destructure props in Article component (you will need that later)
 
-The goal of this task is to become a little bit more prepared for the hooks refactor that is coming.
+Goal: become a little bit more prepared for the hooks refactor that is coming.
 
 Also it cleans up the component interface. There is one place where you see what props are used where (mainly in the `render` method).
 
 ## Exercise 12 - Move ArticleMeta to shared components and inject ArticleActions with props
 
+Goal: make a hole - a configuration prop that we will use to exercise OCP and use it in the next task.
+
+1. Move `ArticleMeta` to shared components
+1. Look for hints 💡 in `ArticleMeta`
+
 ## Exercise 13 - Use ArticleMeta in ArticlePreview
+
+Goal: make use of the configuration prop prepared in the previous exercise.
+
+1. Use `ArticleMeta` in `ArticlePreview` component.
+2. Look for hints 💡 there.
 
 ## Exercise 14 (optional) - Extract FieldTab component in `Home/MainView.js`
 
