@@ -30,6 +30,7 @@ export default (state = defaultState, action) => {
         ...state,
         token: action.token || null,
         appLoaded: true,
+        // 💡 hint (exercise 21): you can simulate `isProUser` here
         currentUser: action.payload ? action.payload.user : null
       };
     case REDIRECT:

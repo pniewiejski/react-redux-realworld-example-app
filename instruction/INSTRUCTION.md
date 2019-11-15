@@ -214,6 +214,12 @@ const [state, setState] = useReducer(
 
 ## Exercise 21 - Create `withProSubscriptionOnly` HoC
 
+Goal: show that Hooks do not replace HoCs.
+
 Use the HoC to show "favorite" button on article preview only if the use has pro subscription.
 
-## Exercise 22 - Discuss - why `withProSubscriptionOnly` is a HoC, wouldn't it be better if it was a Hook?
+1. Extract `ArticlePreviewActions` component from `ArticlePreview`
+2. Create `withProSubscriptionOnly` HoC that will be connected to Redux and will check if current user `isProUser`
+3. The hook will return `null` for `isProUser===false` and `WrappedComponent` otherwise
+4. Wrap ArticlePreviewActions with HoC and simulate the change (by setting the `isProUser` flag in the reducer)
+5. Discuss - why `withProSubscriptionOnly` is a HoC, wouldn't it be better if it was a Hook?
