@@ -153,15 +153,31 @@ Attention: in some cases you will need to import two API files - one shared and 
 
 ## Exercise 16 - Extract routing module
 
-The components shouldn't know we use `react-router-dom`.
+Goal: create abstraction on `react-router-dom`.
+
+1. Refactor the components so that they are not aware we use `react-router-dom` (wrap the library)
+2. Only imports should change
 
 When you finish ask me for a special halloween exercise. 👻
 
 ## Exercise 17 - Refactor Article component to Hooks
 
+> Example
+
+Goal: practice rewriting components to Hooks.
+
 It's good to have destructured props now. Isn't it?
 
+1. Refactor Article component
+2. Replace lifecycle methods with `useEffect`
+
 ## Exercise 18 - Refactor CommentInput to Hooks
+
+Goal: practice rewriting components to Hooks
+
+1. Refactor CommentInput component
+2. Replace state with `useState`
+3. Make sure to use `useCallback`
 
 ## Exercise 19 - Add `@testing-library/react` and test Article lifecycle
 
