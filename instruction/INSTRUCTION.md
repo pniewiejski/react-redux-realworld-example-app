@@ -181,18 +181,39 @@ Goal: practice rewriting components to Hooks
 
 ## Exercise 19 - Add `@testing-library/react` and test Article lifecycle
 
-`should fetch articles on mount and cleanup on unmount`
+Goal: test cleaned up Article component, because it's extremely easy now.
 
-## Exercise 20 - Refactor Register componentn to Hooks
+1. Install @testing-library/react
+2. Add test: `should fetch articles on mount and cleanup on unmount`
+3. Write some other tests you think make sense
 
-## Exercise 21 - Create `useForm` hook and use in Register component
+## Exercise 20 - Refactor Register component to Hooks and create custom `useForm` hook
 
-Get rid of redux calls to keep the form state in the store. 🤦‍♂️
+Goal: refactor component that keeps the local form state in Redux to a custom hook that will do it a lot better.
+
+1. Refactor Register component to Hooks
+2. Create custom `useForm` hook to keep the form state there
+3. Get rid of redux calls to keep the form state in the store 🤦‍♂️
 
 Hint: you need to add `name` property to each form input.
 
-## Exercise 22 - Create `withProSubscriptionOnly` HoC
+This should be the hook interface:
+
+```js
+const {values, changeValue, submitForm} = useForm(onSubmit)
+```
+
+You can use this neat little trick and simulate `setState`:
+
+```js
+const [state, setState] = useReducer(
+  (state, newState) => ({...state, ...newState}),
+  {},
+)
+```
+
+## Exercise 21 - Create `withProSubscriptionOnly` HoC
 
 Use the HoC to show "favorite" button on article preview only if the use has pro subscription.
 
-## Exercise 23 - Discuss - why `withProSubscriptionOnly` is a HoC, wouldn't it be better if it was a Hook?
+## Exercise 22 - Discuss - why `withProSubscriptionOnly` is a HoC, wouldn't it be better if it was a Hook?
