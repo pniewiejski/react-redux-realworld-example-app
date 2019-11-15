@@ -53,6 +53,8 @@ export default (state = defaultState, action) => {
         token: action.error ? null : action.payload.user.token,
         currentUser: action.error ? null : action.payload.user
       };
+    // 💡 hint: common reducer shouldn't really react to the feature actions
+    // rename this one to `ROOT_REDIRECT`, `DELETE_ARTICLE` is dispatched in only one place
     case DELETE_ARTICLE:
       return { ...state, redirectTo: '/' };
     case ARTICLE_PAGE_UNLOADED:
