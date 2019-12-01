@@ -6,15 +6,15 @@ import {
   SETTINGS_SAVED,
   LOGIN,
   REGISTER,
-  DELETE_ARTICLE,
-  ARTICLE_PAGE_UNLOADED,
   EDITOR_PAGE_UNLOADED,
   HOME_PAGE_UNLOADED,
   PROFILE_PAGE_UNLOADED,
   PROFILE_FAVORITES_PAGE_UNLOADED,
   SETTINGS_PAGE_UNLOADED,
   LOGIN_PAGE_UNLOADED,
-  REGISTER_PAGE_UNLOADED
+  REGISTER_PAGE_UNLOADED,
+  PAGE_UNLOADED,
+  ROOT_REDIRECT,
 } from '../constants/actionTypes';
 
 const defaultState = {
@@ -56,9 +56,8 @@ export default (state = defaultState, action) => {
       };
     // 💡 hint: common reducer shouldn't really react to the feature actions
     // rename this one to `ROOT_REDIRECT`, `DELETE_ARTICLE` is dispatched in only one place
-    case DELETE_ARTICLE:
+    case ROOT_REDIRECT:
       return { ...state, redirectTo: '/' };
-    case ARTICLE_PAGE_UNLOADED:
     case EDITOR_PAGE_UNLOADED:
     case HOME_PAGE_UNLOADED:
     case PROFILE_PAGE_UNLOADED:
@@ -66,6 +65,7 @@ export default (state = defaultState, action) => {
     case SETTINGS_PAGE_UNLOADED:
     case LOGIN_PAGE_UNLOADED:
     case REGISTER_PAGE_UNLOADED:
+    case PAGE_UNLOADED:
       return { ...state, viewChangeCounter: state.viewChangeCounter + 1 };
     default:
       return state;
