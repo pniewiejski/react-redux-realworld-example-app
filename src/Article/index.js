@@ -1,11 +1,11 @@
 import ArticleMeta from './ArticleMeta';
 import CommentContainer from './CommentContainer';
 import React from 'react';
-import agent from '../../agent';
+import agent from '../agent';
 import { connect } from 'react-redux';
 import marked from 'marked';
 // 💡 hint: those actions should be moved to `./store/actionTypes`
-import { ARTICLE_PAGE_LOADED, ARTICLE_PAGE_UNLOADED } from '../../constants/actionTypes';
+import { ARTICLE_PAGE_LOADED, ARTICLE_PAGE_UNLOADED } from '../constants/actionTypes';
 // 💡 hint: you need a separate, generic action action here `PAGE_UNLOADED` see `common.js` reducer
 
 const mapStateToProps = state => ({

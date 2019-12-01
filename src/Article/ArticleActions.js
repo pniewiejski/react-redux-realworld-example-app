@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
-import agent from '../../agent';
+import agent from '../agent';
 import { connect } from 'react-redux';
 
 // 💡 hint: this should be replaced with a generic ROOT_REDIRECT action, see `common.js` reducer
-import { DELETE_ARTICLE } from '../../constants/actionTypes';
+import { DELETE_ARTICLE } from '../constants/actionTypes';
 
 const mapDispatchToProps = dispatch => ({
   // 💡 hint: this payload is not used
