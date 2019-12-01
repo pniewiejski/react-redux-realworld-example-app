@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { APP_LOAD, REDIRECT } from '../constants/actionTypes';
 import { Route, Switch } from 'react-router-dom';
 import Article from '../Article';
-import Editor from '../components/Editor';
+import Editor from '../Editor/Editor';
 import Home from '../Home';
 import Login from '../components/Login';
 import Profile from '../components/Profile';
