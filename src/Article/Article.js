@@ -1,30 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
+
 import ArticleMeta from './ArticleMeta';
 import CommentContainer from './CommentContainer';
 import agent from '../agent';
 import marked from 'marked';
-// 💡 hint: those actions should be moved to `./store/actionTypes`
-// 👨🏼‍💻 moved ARTICLE_PAGE_LOADED, ARTICLE_PAGE_UNLOADED to `./store/actionTypes`
-import { ARTICLE_PAGE_LOADED, ARTICLE_PAGE_UNLOADED } from './store/actionTypes';
-// 💡 hint: you need a separate, generic action action here `PAGE_UNLOADED` see `common.js` reducer
-import { PAGE_UNLOADED } from '../constants/actionTypes';
 
-const mapStateToProps = state => ({
-  ...state.article,
-  currentUser: state.common.currentUser
-});
-
-const mapDispatchToProps = dispatch => ({
-  onLoad: payload =>
-    dispatch({ type: ARTICLE_PAGE_LOADED, payload }),
-  onUnload: () =>
-  {
-    // 💡 hint: call PAGE_UNLOADED here as well
-      dispatch({ type: ARTICLE_PAGE_UNLOADED });
-      dispatch({ type: PAGE_UNLOADED });
-    }
-});
 
 class Article extends React.Component {
   componentWillMount() {
@@ -102,4 +82,4 @@ class Article extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Article);
+export default Article;
