@@ -3,7 +3,7 @@ import articleList from './reducers/articleList';
 import auth from './reducers/auth';
 import { combineReducers } from 'redux';
 import common from './reducers/common';
-import editor from './Editor/store/editor';
+import { editorReducer } from './Editor';
 import home from './reducers/home';
 import profile from './reducers/profile';
 import settings from './reducers/settings';
@@ -14,7 +14,7 @@ export default combineReducers({
   articleList,
   auth,
   common,
-  editor,
+  editor: editorReducer,
   home,
   profile,
   settings,
