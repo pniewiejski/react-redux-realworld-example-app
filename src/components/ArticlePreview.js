@@ -4,6 +4,8 @@ import agent from '../agent';
 import { connect } from 'react-redux';
 import { ARTICLE_FAVORITED, ARTICLE_UNFAVORITED } from '../constants/actionTypes';
 
+import ArticleMeta from './ArticleMeta';
+
 const FAVORITED_CLASS = 'btn btn-sm btn-primary';
 const NOT_FAVORITED_CLASS = 'btn btn-sm btn-outline-primary';
 
@@ -35,27 +37,15 @@ const ArticlePreview = props => {
 
   return (
     <div className="article-preview">
-      <div className="article-meta">
-        <Link to={`/@${article.author.username}`}>
-          <img src={article.author.image} alt={article.author.username} />
-        </Link>
-
-        <div className="info">
-          <Link className="author" to={`/@${article.author.username}`}>
-            {article.author.username}
-          </Link>
-          <span className="date">
-            {new Date(article.createdAt).toDateString()}
-          </span>
-        </div>
-
-        {/* 💡 hint: this could be injected to a generic component if we had one... */}
-        <div className="pull-xs-right">
-          <button className={favoriteButtonClass} onClick={handleClick}>
-            <i className="ion-heart"></i> {article.favoritesCount}
-          </button>
-        </div>
-      </div>
+      <ArticleMeta
+        article={article}
+        articleActions={(
+          <div className="pull-xs-right">
+            <button className={favoriteButtonClass} onClick={handleClick}>
+              <i className="ion-heart"></i> {article.favoritesCount}
+            </button>
+          </div>
+        )}/>  
 
       <Link to={`/article/${article.slug}`} className="preview-link">
         <h1>{article.title}</h1>
