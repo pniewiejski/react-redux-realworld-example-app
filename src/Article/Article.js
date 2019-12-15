@@ -1,8 +1,9 @@
 import React from 'react';
 
-import ArticleMeta from './ArticleMeta';
+import ArticleMeta from '../components/ArticleMeta';
 import ArticleBody from './ArticleBody';
 import CommentContainer from './CommentContainer';
+import ArticleActions from './ArticleActions';
 
 class Article extends React.Component {
   componentWillMount() {
@@ -33,22 +34,15 @@ class Article extends React.Component {
 
         <div className="banner">
           <div className="container">
-
             <h1>{article.title}</h1>
-            <ArticleMeta
-              article={article}
-              canModify={canModify} />
-
+            <ArticleMeta article={article} canModify={canModify} />
           </div>
         </div>
 
         <div className="container page">
-
           <div className="row article-content">
             <div className="col-xs-12">
-
               <ArticleBody body={article.body}/>
-
               <ul className="tag-list">
                 {
                   this.props.article.tagList.map(tag => {
@@ -62,12 +56,9 @@ class Article extends React.Component {
                   })
                 }
               </ul>
-
             </div>
           </div>
-
           <hr />
-
           <div className="article-actions">
           </div>
 

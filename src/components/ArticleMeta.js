@@ -1,10 +1,8 @@
-import ArticleActions from './ArticleActions';
 import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-const ArticleMeta = props => {
-  const article = props.article;
+const ArticleMeta = ({ article, articleActions }) => {
   return (
     <div className="article-meta">
       <Link to={`/@${article.author.username}`}>
@@ -19,9 +17,7 @@ const ArticleMeta = props => {
           {new Date(article.createdAt).toDateString()}
         </span>
       </div>
-
-      {/* 💡 hint: we should inject that in props */}
-      <ArticleActions canModify={props.canModify} article={article} />
+      {articleActions}
     </div>
   );
 };
