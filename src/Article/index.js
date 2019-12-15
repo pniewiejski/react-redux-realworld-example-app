@@ -1,2 +1,2 @@
 export { default } from './Article';
-export { default as articleReducer } from './store/article';
+export { default as articleReducer } from './store/reducer';
