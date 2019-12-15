@@ -1,4 +1,4 @@
-import article from './Article/store/article';
+import { articleReducer } from './Article';
 import articleList from './reducers/articleList';
 import auth from './reducers/auth';
 import { combineReducers } from 'redux';
@@ -10,7 +10,7 @@ import settings from './reducers/settings';
 import { routerReducer } from 'react-router-redux';
 
 export default combineReducers({
-  article,
+  article: articleReducer,
   articleList,
   auth,
   common,
