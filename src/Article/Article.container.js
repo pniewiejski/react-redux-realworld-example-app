@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import agent from '../agent';
+import api from '../api';
 import { ARTICLE_PAGE_LOADED, ARTICLE_PAGE_UNLOADED } from './store/actionTypes';
 import { PAGE_UNLOADED } from '../constants/actionTypes';
 
@@ -15,8 +15,8 @@ const mapStateToProps = state => ({
     fetchArticle: articleId => dispatch({
       type: ARTICLE_PAGE_LOADED,
       payload: Promise.all([
-        agent.Articles.get(articleId),
-        agent.Comments.forArticle(articleId)
+        api.Articles.get(articleId),
+        api.Comments.forArticle(articleId)
       ])
     }),
     onUnload: () =>

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import React from 'react';
 import { connect } from 'react-redux';
 
-import agent from '../agent';
+import api from '../api';
 
 // 💡 hint: this should be replaced with a generic ROOT_REDIRECT action, see `common.js` reducer
 // 👨🏼‍💻 Using ROOT_REDIRECT 
@@ -18,7 +18,7 @@ const mapDispatchToProps = dispatch => ({
 const ArticleActions = props => {
   const article = props.article;
   const del = () => {
-    props.onClickDelete(agent.Articles.del(article.slug))
+    props.onClickDelete(api.Articles.del(article.slug))
   };
   if (props.canModify) {
     return (

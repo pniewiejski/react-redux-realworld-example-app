@@ -1,6 +1,6 @@
 import ListErrors from './ListErrors';
 import React from 'react';
-import agent from '../agent';
+import api from '../api';
 import { connect } from 'react-redux';
 import {
   SETTINGS_SAVED,
@@ -132,7 +132,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   onClickLogout: () => dispatch({ type: LOGOUT }),
   onSubmitForm: user =>
-    dispatch({ type: SETTINGS_SAVED, payload: agent.Auth.save(user) }),
+    dispatch({ type: SETTINGS_SAVED, payload: api.Auth.save(user) }),
   onUnload: () => dispatch({ type: SETTINGS_PAGE_UNLOADED })
 });
 
