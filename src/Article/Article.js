@@ -16,11 +16,8 @@ function Article(props) {
     onUnload
   } = props;
 
-  useEffect(() => {
-    fetchArticle(articleId);
-
-    return () => onUnload();
-  }, [articleId, fetchArticle, onUnload]);
+  useEffect(() => fetchArticle(articleId), [articleId, fetchArticle]);
+  useEffect(() => () => onUnload(), [onUnload]);
 
   if (!article) {
     return null;
