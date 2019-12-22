@@ -32,12 +32,17 @@ class Article extends React.Component {
     return (
       <div className="article-page">
 
-        <div className="banner">
-          <div className="container">
-            <h1>{article.title}</h1>
-            <ArticleMeta article={article} canModify={canModify} />
-          </div>
+      <div className="banner">
+        <div className="container">
+          <h1>{article.title}</h1>
+          <ArticleMeta 
+            article={article} 
+            articleActions={(
+              <ArticleActions canModify={canModify} article={article} />
+            )} 
+          />
         </div>
+      </div>
 
         <div className="container page">
           <div className="row article-content">
