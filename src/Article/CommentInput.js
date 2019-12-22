@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import api from '../api';
 import { ADD_COMMENT } from './store/actionTypes';
@@ -8,51 +8,46 @@ const mapDispatchToProps = dispatch => ({
     dispatch({ type: ADD_COMMENT, payload })
 });
 
-class CommentInput extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      body: ''
-    };
+function CommentInput(props) {
 
-    this.setBody = ev => {
-      this.setState({ body: ev.target.value });
-    };
+  const {
+    slug,
+    currentUser,
+    onSubmit
+  } = props;
 
-    this.createComment = ev => {
-      ev.preventDefault();
-      const payload = api.Comments.create(this.props.slug,
-        { body: this.state.body });
-      this.setState({ body: '' });
-      this.props.onSubmit(payload);
-    };
+  const [body, setBody] = useState('');
+  
+  const createComment = ev => {
+    ev.preventDefault();
+    const payload = api.Comments.create(slug, { body: body });
+    setBody('');
+    onSubmit(payload);
   }
 
-  render() {
-    return (
-      <form className="card comment-form" onSubmit={this.createComment}>
-        <div className="card-block">
-          <textarea className="form-control"
-            placeholder="Write a comment..."
-            value={this.state.body}
-            onChange={this.setBody}
-            rows="3">
-          </textarea>
-        </div>
-        <div className="card-footer">
-          <img
-            src={this.props.currentUser.image}
-            className="comment-author-img"
-            alt={this.props.currentUser.username} />
-          <button
-            className="btn btn-sm btn-primary"
-            type="submit">
-            Post Comment
-          </button>
-        </div>
-      </form>
-    );
-  }
+  return (
+    <form className="card comment-form" onSubmit={createComment}>
+      <div className="card-block">
+        <textarea className="form-control"
+          placeholder="Write a comment..."
+          value={body}
+          onChange={ev => setBody(ev.target.value)}
+          rows="3">
+        </textarea>
+      </div>
+      <div className="card-footer">
+        <img
+          src={currentUser.image}
+          className="comment-author-img"
+          alt={currentUser.username} />
+        <button
+          className="btn btn-sm btn-primary"
+          type="submit">
+          Post Comment
+        </button>
+      </div>
+    </form>
+  );
 }
 
 export default connect(() => ({}), mapDispatchToProps)(CommentInput);
