@@ -1,7 +1,7 @@
 import DeleteButton from './DeleteButton';
 import React from 'react';
 
-import { Link } from 'react-router-dom';
+import { Link } from '../routing';
 
 const Comment = props => {
   const comment = props.comment;

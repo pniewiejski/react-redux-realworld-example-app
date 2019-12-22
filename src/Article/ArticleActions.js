@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from '../routing';
 import React from 'react';
 import { connect } from 'react-redux';
 
