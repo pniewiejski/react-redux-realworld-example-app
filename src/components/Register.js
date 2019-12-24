@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import { Link } from '../routing';
 import ListErrors from './ListErrors';
 import api from '../api';
@@ -19,7 +19,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch({ type: UPDATE_FIELD_AUTH, key: 'password', value }),
   onChangeUsername: value =>
     dispatch({ type: UPDATE_FIELD_AUTH, key: 'username', value }),
-  onSubmit: (username, email, password) => {
+  onSubmit: ({ username, email, password }) => {
     const payload = api.Auth.register(username, email, password);
     dispatch({ type: REGISTER, payload })
   },
@@ -27,7 +27,35 @@ const mapDispatchToProps = dispatch => ({
     dispatch({ type: REGISTER_PAGE_UNLOADED })
 });
 
+function useForm(onSubmit) {
+  const [state, dispatchState] = useReducer(
+    (state, newState) => ({...state, ...newState}), 
+    {}
+  );
+
+  const changeValue = ({ target: { name, value } }) => {
+    dispatchState({
+      [name]: value
+    });
+  }
+
+  const submitForm = ev => {
+    ev.preventDefault(); 
+    onSubmit(state);
+  };
+
+  return {
+    values: state,
+    changeValue,
+    submitForm
+  };
+}
+
 function Register(props) {
+  const { onSubmit, onUnload } = props;
+  const {values, changeValue, submitForm} = useForm(onSubmit)
+  useEffect(() => () => onUnload(), [onUnload]);
+  
   const {
     email,
     password,
@@ -36,19 +64,11 @@ function Register(props) {
     inProgress
   } = props;
   
-  const { onSubmit, onUnload } = props;
   
   const changeEmail = ev => props.onChangeEmail(ev.target.value);
   const changePassword = ev => props.onChangePassword(ev.target.value);
   const changeUsername = ev => props.onChangeUsername(ev.target.value);
   
-  const submitForm = (username, email, password) => ev => {
-    ev.preventDefault();
-    onSubmit(username, email, password);
-  }
-  
-  useEffect(() => () => onUnload(), [onUnload]);
-
   return (
     <div className="auth-page">
       <div className="container page">
@@ -64,7 +84,7 @@ function Register(props) {
 
             <ListErrors errors={errors} />
 
-            <form onSubmit={submitForm(username, email, password)}>
+            <form onSubmit={submitForm}>
               <fieldset>
 
                 <fieldset className="form-group">
@@ -72,8 +92,9 @@ function Register(props) {
                     className="form-control form-control-lg"
                     type="text"
                     placeholder="Username"
-                    value={username}
-                    onChange={changeUsername} />
+                    name="username"
+                    value={values.username}
+                    onChange={changeValue} />
                 </fieldset>
 
                 <fieldset className="form-group">
@@ -81,8 +102,9 @@ function Register(props) {
                     className="form-control form-control-lg"
                     type="email"
                     placeholder="Email"
-                    value={email}
-                    onChange={changeEmail} />
+                    name="email"
+                    value={values.email}
+                    onChange={changeValue} />
                 </fieldset>
 
                 <fieldset className="form-group">
@@ -90,8 +112,9 @@ function Register(props) {
                     className="form-control form-control-lg"
                     type="password"
                     placeholder="Password"
-                    value={password}
-                    onChange={changePassword} />
+                    name="password"
+                    value={values.password}
+                    onChange={changeValue} />
                 </fieldset>
 
                 <button
